@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Enemy m_EnemyPrefab;
     [SerializeField] float m_SpawnDelay;
     float m_DelayCountDown;
+    float m_Radius;
 
     void Start()
     {
@@ -29,6 +30,9 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy(){
         
-        Enemy enemy = Instantiate(m_EnemyPrefab, transform);
+        Enemy enemy = Instantiate(m_EnemyPrefab, 
+            Random.insideUnitSphere * m_Radius + transform.position,  Quaternion.identity);
+        
+        enemy.m_FoodTarget = m_FoodTarget;
     }
 }
