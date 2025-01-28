@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("Enemy Variables")]
     public Food m_FoodTarget;
+    public float m_EnemySpeed;
 
+    [Space]
     [SerializeField] Enemy m_EnemyPrefab;
-    [SerializeField] float m_SpawnDelay;
-    float m_DelayCountDown;
-    float m_Radius;
 
-    void Start()
+    [Header("Spawner Controls")]
+    [SerializeField] float m_SpawnRadius;
+    [SerializeField] float m_SpawnDelay;
+    [SerializeField] float m_DelayCountDown;
+
+    void Awake()
     {
         
         m_DelayCountDown = m_SpawnDelay;
@@ -19,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Update(){
 
-        m_DelayCountDown =- Time.deltaTime;
+        m_DelayCountDown = m_DelayCountDown - Time.deltaTime;
         
         if(m_DelayCountDown <= 0){
 
@@ -31,8 +36,12 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy(){
         
         Enemy enemy = Instantiate(m_EnemyPrefab, 
-            Random.insideUnitSphere * m_Radius + transform.position,  Quaternion.identity);
+            new Vector3(Random.insideUnitSphere.x, 0f, Random.insideUnitSphere.z) * m_SpawnRadius,  
+                Quaternion.identity);
         
         enemy.m_FoodTarget = m_FoodTarget;
+        enemy.m_Speed = m_EnemySpeed;
+        enemy.transform.SetParent(transform);
+
     }
 }
