@@ -9,6 +9,9 @@ I decided to recreate my childhood Ant Smasher game with some twists and now the
 The fun part
 - It's a nostalgic tower defense kinda feel since the ants keep coming in waves. Can you stop them?
 
+Download build on itch.io: 
+https://promiseudomah.itch.io/no-ants-allowed
+
 Controls
 - Click on ants with your mouse to squash them!
 
